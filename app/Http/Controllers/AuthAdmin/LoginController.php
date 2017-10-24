@@ -49,11 +49,12 @@ class LoginController extends Controller
     {
         $this->validate($request, [
             'email' => 'required|email',
+            'codigo' => 'required|min:8',
             'password' => 'required|min:6'
         ]);
 
         $credential = [
-            'email' => $request->email,
+            'codigo' => $request->codigo,
             'password' => $request->password
         ];
 
@@ -64,7 +65,7 @@ class LoginController extends Controller
         }
 
         // If Unsuccessful, then redirect back to the login with the form data
-        return redirect()->back()->withInput($request->only('email', 'remember'));
+        return redirect()->back()->withInput($request->only('codigo', 'remember'));
     }
 
     /**
